@@ -1,6 +1,66 @@
-<?php 
+<?php function post($url, $postVars) {
+	    $options = array(
+	        "http" =>
+	            array(
+	                "method"  => "POST",
+	                "header"  => "Content-type: application/json",
+	                "content" => $postVars
+	            )
+	    );
+	    $streamContext  = stream_context_create($options);
+	    $result = file_get_contents($url, false, $streamContext);
+	    if ($result === false) {
+	        $error = error_get_last();
+	        throw new Exception("POST request failed: " . $error['message']);
+	    }
+	    return $result;
+	}
 
-?>
+	if (!empty($_POST)) {
+	    extract($_POST);
+
+	    $inputName = $inputFirstName . " " . $inputLastName;
+
+	    $data = json_encode(array(
+	        "records" => array(array(
+	            "fields" => array(
+	                "Name" => $inputName,
+	                "Phone" => $inputPhone,
+	                "Email" => $inputEmail
+	            )
+	        ))
+	    ));
+
+		$valid = true;
+	    $br= "\r\n";
+
+	    if ($valid) {
+	        // Send a notification email to email@domain.com
+	        $to = "email@domain.com";
+
+	        $subject = "I just downloaded your vCard";
+
+	        $message = "<h3>Here are my contact details :</h3>";
+	        $message .= "<p>Name : " . $inputName . "</p>";
+	        $message .= "<p>Email : " . $inputEmail . "</p>";
+	        $message .= "<p>Phone : " . $inputPhone . "</p>";
+
+			$header = "From: " . $inputName . " <" . $inputEmail . ">" . $br;
+	        $header .= "Reply-To: " . $to . $br;
+	        $header .= "Content-Type: text/html; charset=utf-8" . $br;
+
+			$sent = mail($to, $subject, $message, utf8_decode($header));
+	        if ($sent) {
+	            $error = "Your message was sent !";
+	        }
+	        else {
+	            $error = "An error occured, please start again !";
+	        }
+	    }
+	}
+	else {
+	    $error = "POST invalid !";
+	}?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
