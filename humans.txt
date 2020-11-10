@@ -9,5 +9,5 @@
 
 // Site
 
-    Version. v2020.0.1
-    Released. 2020-11-08
+    Version. v2020.0.2
+    Released. 2020-11-10
