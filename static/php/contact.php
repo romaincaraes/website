@@ -1,66 +1,66 @@
 <?php function post($url, $postVars) {
-	    $options = array(
-	        "http" =>
-	            array(
-	                "method"  => "POST",
-	                "header"  => "Content-type: application/json",
-	                "content" => $postVars
-	            )
-	    );
-	    $streamContext  = stream_context_create($options);
-	    $result = file_get_contents($url, false, $streamContext);
-	    if ($result === false) {
-	        $error = error_get_last();
-	        throw new Exception("POST request failed: " . $error['message']);
-	    }
-	    return $result;
-	}
+        $options = array(
+            "http" =>
+                array(
+                    "method"  => "POST",
+                    "header"  => "Content-type: application/json",
+                    "content" => $postVars
+                )
+        );
+        $streamContext  = stream_context_create($options);
+        $result = file_get_contents($url, false, $streamContext);
+        if ($result === false) {
+            $error = error_get_last();
+            throw new Exception("POST request failed: " . $error['message']);
+        }
+    return $result;
+    }
 
-	if (!empty($_POST)) {
-	    extract($_POST);
+    if (!empty($_POST)) {
+        extract($_POST);
 
-	    $inputName = $inputFirstName . " " . $inputLastName;
+        $inputName = $inputFirstName . " " . $inputLastName;
 
-	    $data = json_encode(array(
-	        "records" => array(array(
-	            "fields" => array(
-	                "Name" => $inputName,
-	                "Phone" => $inputPhone,
-	                "Email" => $inputEmail
-	            )
-	        ))
-	    ));
+        $data = json_encode(array(
+            "records" => array(array(
+                "fields" => array(
+                    "Name" => $inputName,
+                    "Phone" => $inputPhone,
+                    "Email" => $inputEmail
+                )
+            ))
+        ));
 
-		$valid = true;
-	    $br= "\r\n";
+        $valid = true;
+        $br= "\r\n";
 
-	    if ($valid) {
-	        // Send a notification email to email@domain.com
-	        $to = "email@domain.com";
+        if ($valid) {
+            // Send a notification email to email@domain.com
+            $to = "email@domain.com";
 
-	        $subject = "I just downloaded your vCard";
+            $subject = "I just downloaded your vCard";
 
-	        $message = "<h3>Here are my contact details :</h3>";
-	        $message .= "<p>Name : " . $inputName . "</p>";
-	        $message .= "<p>Email : " . $inputEmail . "</p>";
-	        $message .= "<p>Phone : " . $inputPhone . "</p>";
+            $message = "<h3>Here are my contact details :</h3>";
+            $message .= "<p>Name : " . $inputName . "</p>";
+            $message .= "<p>Email : " . $inputEmail . "</p>";
+            $message .= "<p>Phone : " . $inputPhone . "</p>";
 
-			$header = "From: " . $inputName . " <" . $inputEmail . ">" . $br;
-	        $header .= "Reply-To: " . $to . $br;
-	        $header .= "Content-Type: text/html; charset=utf-8" . $br;
+            $header = "From: " . $inputName . " <" . $inputEmail . ">" . $br;
+            $header .= "Reply-To: " . $to . $br;
+            $header .= "Content-Type: text/html; charset=utf-8" . $br;
 
-			$sent = mail($to, $subject, $message, utf8_decode($header));
-	        if ($sent) {
-	            $error = "Your message was sent !";
-	        }
-	        else {
-	            $error = "An error occured, please start again !";
-	        }
-	    }
-	}
-	else {
-	    $error = "POST invalid !";
-	}?>
+            $sent = mail($to, $subject, $message, utf8_decode($header));
+            if ($sent) {
+                $error = "Your message was sent !";
+            }
+            else {
+                $error = "An error occured, please start again !";
+            }
+        }
+    }
+    else {
+        $error = "POST invalid !";
+    }?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -86,32 +86,78 @@
         <div class="container h-100">
             <div class="row justify-content-center h-100">
                 <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 m-auto">
-                    <div class="card">
+                    <div class="card bg-dark text-light border-0">
                         <div class="card-body">
-                            <h1 class="card-title">Contact me</h1>
-                            <form class="form-contact" action="/static/vcf/romaincaraes.vcf" method="get">
-                                <ul class="card-text list-group p-2">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Phone. <a href="tel:+33123456789">+33 (0)1 23 45 67 89</a>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Email. <a href="mailto:email@domain.com">email@domain.com</a>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Website. <a href="//romaincaraes.fr" target="_blank">https://romaincaraes.fr</a>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        LinkedIn. <a href="//linkedin.com/in/romaincaraes" target="_blank">Romain Caraës</a>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Twitter. <a href="//twitter.com/romaincaraes" target="_blank">@romaincaraes</a>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        GitHub. <a href="//github.com/romaincaraes" target="_blank">@romaincaraes</a>
-                                    </li>
-                                </ul>
+                            <h1 class="card-title mb-3">Contact</h1>
+                            <form class="form-contact text-primary" action="/static/vcf/romaincaraes.vcf" method="get">
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-mobile fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control btn btn-light rounded-pill mx-1" href="tel:+33123456789">+33 (0)1 23 45 67 89</a>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control btn btn-light rounded-pill mx-1" href="mailto:email@domain.com">email@domain.com</a>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-desktop fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control btn btn-light rounded-pill mx-1" href="//romaincaraes.fr" target="_blank">romaincaraes.fr</a>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control btn btn-light rounded-pill mx-1" href="//linkedin.com/in/romaincaraes" target="_blank">Romain Caraës</a>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control btn btn-light rounded-pill mx-1" href="//twitter.com/romaincaraes" target="_blank">@romaincaraes</a>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <a class="form-control  btn btn-light rounded-pill mx-1" href="//github.com/romaincaraes" target="_blank">@romaincaraes</a>
+                                    </div>
+                                </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-address-card mr-2"></i>Download</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-address-card mr-2"></i>Download</button>
                                 </div>
                             </form>
                         </div>
