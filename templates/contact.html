@@ -23,37 +23,46 @@
         <div class="container h-100">
             <div class="row justify-content-center h-100">
                 <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 m-auto">
-                    <div class="card">
+                    <div class="card bg-dark text-light border-0">
                         <div class="card-body">
-                            <h1 class="card-title">Contact</h1>
-                            <form class="form-contact" action="/static/php/contact.php" method="post">
+                            <h1 class="card-title mb-3">Contact</h1>
+                            <form class="form-contact text-primary" action="/static/php/contact.php" method="post">
                                 <div class="form-label-group mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-primary border-primary text-light"><i class="fas fa-fw fa-user"></i></span>
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+                                            </span>
                                         </div>
-                                        <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" aria-label="First Name" placeholder="First Name" required>
-                                        <input type="text" class="form-control" id="inputLastName" name="inputLastName" aria-label="Last Name" placeholder="Last Name" required>
+                                        <input type="text" class="form-control rounded-pill mx-1" id="inputFirstName" name="inputFirstName" aria-label="First Name" placeholder="First Name" required>
+                                        <input type="text" class="form-control rounded-pill mx-1" id="inputLastName" name="inputLastName" aria-label="Last Name" placeholder="Last Name" required>
                                     </div>
                                 </div>
                                 <div class="form-label-group mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-primary border-primary text-light"><i class="fas fa-fw fa-phone"></i></span>
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-mobile fa-stack-1x fa-inverse"></i>
+                                            </span>
                                         </div>
-                                        <input type="tel" class="form-control" id="inputPhone" name="inputPhone" aria-label="Phone" placeholder="Phone" required>
+                                        <input type="tel" class="form-control rounded-pill mx-1" id="inputPhone" name="inputPhone" aria-label="Phone" placeholder="Phone" required>
                                     </div>
                                 </div>
                                 <div class="form-label-group mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-primary border-primary text-light"><i class="fas fa-fw fa-at"></i></span>
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                                            </span>
                                         </div>
-                                        <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-label="Email" placeholder="Email" required>
+                                        <input type="email" class="form-control rounded-pill mx-1" id="inputEmail" name="inputEmail" aria-label="Email" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane mr-2"></i>Submit</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-paper-plane mr-2"></i>Submit</button>
                                 </div>
                             </form>
                         </div>
