@@ -16,6 +16,8 @@
     return $result;
     }
 
+    include "settings.php";
+
     $input = <<<EOL
     <form class="form-contact text-primary" action="/static/php/contact.php" method="post">
         <div class="form-label-group mb-3">
@@ -59,7 +61,7 @@
     EOL;
 
     $output = <<<EOL
-    <form class="form-contact text-primary" action="/static/vcf/romaincaraes.vcf" method="get">
+    <form class="form-contact text-primary" action=$VCARD_PATH method="get">
         <div class="form-label-group mb-3">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -68,7 +70,7 @@
                         <i class="fas fa-mobile fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control btn btn-light rounded-pill mx-1" href="tel:+33123456789">+33 (0)1 23 45 67 89</a>
+                <a class="form-control btn btn-light rounded-pill mx-1" href="tel:$PHONE">$PHONE</a>
             </div>
         </div>
         <div class="form-label-group mb-3">
@@ -79,7 +81,7 @@
                         <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control btn btn-light rounded-pill mx-1" href="mailto:email@domain.com">email@domain.com</a>
+                <a class="form-control btn btn-light rounded-pill mx-1" href="mailto:$EMAIL">$EMAIL</a>
             </div>
         </div>
         <div class="form-label-group mb-3">
@@ -90,7 +92,7 @@
                         <i class="fas fa-desktop fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control btn btn-light rounded-pill mx-1" href="//romaincaraes.fr" target="_blank">romaincaraes.fr</a>
+                <a class="form-control btn btn-light rounded-pill mx-1" href="$WEBSITE" target="_blank">$WEBSITE</a>
             </div>
         </div>
         <div class="form-label-group mb-3">
@@ -101,7 +103,7 @@
                         <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control btn btn-light rounded-pill mx-1" href="//linkedin.com/in/romaincaraes" target="_blank">Romain Caraës</a>
+                <a class="form-control btn btn-light rounded-pill mx-1" href="$LINKEDIN_URL" target="_blank">$LINKEDIN_LABEL</a>
             </div>
         </div>
         <div class="form-label-group mb-3">
@@ -112,7 +114,7 @@
                         <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control btn btn-light rounded-pill mx-1" href="//twitter.com/romaincaraes" target="_blank">@romaincaraes</a>
+                <a class="form-control btn btn-light rounded-pill mx-1" href="$TWITTER_URL" target="_blank">$TWITTER_LABEL</a>
             </div>
         </div>
         <div class="form-label-group mb-3">
@@ -123,7 +125,7 @@
                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <a class="form-control  btn btn-light rounded-pill mx-1" href="//github.com/romaincaraes" target="_blank">@romaincaraes</a>
+                <a class="form-control  btn btn-light rounded-pill mx-1" href=$GITHUB_URL target="_blank">$GITHUB_LABEL</a>
             </div>
         </div>
         <div class="text-center">
@@ -153,8 +155,8 @@
         $br= "\r\n";
 
         if ($valid) {
-            // Send a notification email to email@domain.com
-            $to = "email@domain.com";
+            // Send a notification email to the address stored in $EMAIL variable in setting.php
+            $to = $EMAIL;
 
             $subject = "I just downloaded your vCard";
 
