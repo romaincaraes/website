@@ -19,6 +19,11 @@
     include "settings.php";
 
     $input = <<<EOL
+    <h1 class="card-title mb-3">Hello, I'm Romain</h1>
+    <div class="p-2">
+        <p>Let's share our contact informations !
+        You give me yours, I'll give you mine 😉</p>
+    </div>
     <form class="form-contact text-primary" action="/static/php/contact.php" method="post">
         <div class="form-label-group mb-3">
             <div class="input-group">
@@ -61,6 +66,7 @@
     EOL;
 
     $output = <<<EOL
+    <h1 class="card-title mb-3">Romain Caraës</h1>
     <form class="form-contact text-primary" action=$VCARD_PATH method="get">
         <div class="form-label-group mb-3">
             <div class="input-group">
@@ -208,7 +214,6 @@
                 <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 m-auto">
                     <div class="card bg-dark text-light border-0">
                         <div class="card-body">
-                            <h1 class="card-title mb-3">Contact</h1>
                             <?php echo $card; ?>
                         </div>
                     </div>
