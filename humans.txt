@@ -7,5 +7,5 @@
     GitHub. /romaincaraes
 
 // Site
-    Version. v2024.0.0
+    Version. v2024.1.0
     Released. 2024-01-02
