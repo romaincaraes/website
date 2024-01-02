@@ -1,0 +1,14 @@
+html, body {
+    height : 100%;
+}
+
+h1, h2, h3 {
+    font-family : "Inter";
+    font-weight : 800;
+}
+.fa-stack {
+    font-size: 1.2em;
+}
+i {
+    vertical-align: middle;
+}
