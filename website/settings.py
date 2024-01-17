@@ -104,6 +104,10 @@ STATIC_URL = 'https://static.romaincaraes.fr/'
 STATIC_ROOT = BASE_DIR / 'static/'
 STATICFILES_DIRS = []
 
+MEDIA_URL = 'https://media.romaincaraes.fr/'
+MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIAFILES_DIRS = []
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
