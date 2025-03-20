@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from django.shortcuts import render
+from .models import ContactForm
 
 load_dotenv()
 
@@ -16,4 +17,17 @@ def contact(request):
         'form_display': "",
         'card_display': "hidden",
     }
+
+    if (request.method == 'POST'):
+        contact = ContactForm()
+        contact.firstName = request.POST.get('inputFirstName')
+        contact.lastName = request.POST.get('inputLastName')
+        contact.email = request.POST.get('inputEmail')
+        contact.phone = request.POST.get('inputPhone')
+        contact.save()
+
+        context['form_display'] = "hidden"
+        context['card_display'] = ""
+        
+        return render(request, 'contact.html', context=context)
     return render(request, 'contact.html', context=context)
