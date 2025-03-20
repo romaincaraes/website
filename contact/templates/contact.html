@@ -22,7 +22,62 @@
         <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body class="bg-dark">
-        <section class="container h-100">
+        <section class="container h-100" {{ form_display }}>
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 m-auto">
+                    <div class="card bg-dark text-light border-0">
+                        <div class="card-body">
+                            <h3 class="card-title mb-3">Hello, I'm Romain Caraës 👋</h3>
+                            <div class="p-2">
+                                <p>Let's share our contacts!</br>
+                                Please input your information to download mine.</p>
+                            </div>
+                            <form class="form-contact text-primary" action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control rounded-pill mx-1" id="inputFirstName" name="inputFirstName" aria-label="First Name" placeholder="First Name" required>
+                                        <input type="text" class="form-control rounded-pill mx-1" id="inputLastName" name="inputLastName" aria-label="Last Name" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-mobile fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <input type="tel" class="form-control rounded-pill mx-1" id="inputPhone" name="inputPhone" aria-label="Phone" placeholder="Phone" required>
+                                    </div>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="fa-stack fa-1x">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </div>
+                                        <input type="email" class="form-control rounded-pill mx-1" id="inputEmail" name="inputEmail" aria-label="Email" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type-"submit" class="btn btn-primary rounded-pill"><i class="fas fa-paper-plane mr-2"></i>Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container h-100" {{ card_display }}>
             <div class="row justify-content-center h-100">
                 <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 m-auto">
                     <div class="card bg-dark text-light border-0">
